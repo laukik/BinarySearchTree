@@ -133,12 +133,20 @@ int delete(int x, node *ptr){
 		return 0;
 	}
 }
+int height(node *ptr,int count){
+	if(ptr){
+		int x = height(ptr-> lptr,count+1),y = height(ptr-> rptr,count+1);
+		return ( x > y ? x : y);
+	}
+	return count;
+}
 int main(){
 	rut = root(100);
 	insert(95,rut);
 	insert(45,rut);
 	insert(195,rut);
 	insert(145,rut);
+	printf("height %d\n",height(rut,0));
 	inorder(rut);
 	postorder(rut);
 	preorder(rut);
@@ -147,5 +155,6 @@ int main(){
 	printf("%d\n",rchild(100,rut)->data);
 	printf("%d\n",delete(100,rut));
 	preorder(rut);
+	printf("height %d\n",height(rut,0));
 	return 0;
 }
